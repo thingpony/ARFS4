@@ -25,8 +25,13 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/drain_power()
 	return -1
 
+<<<<<<< HEAD
 /obj/machinery/power/solar/New(var/turf/loc, var/obj/item/solar_assembly/S)
 	..(loc)
+=======
+/obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
+	. = ..()
+>>>>>>> 61df5b8... Merge pull request #5762 from kevinz000/initialize_caps
 	Make(S)
 	connect_to_network()
 
@@ -347,7 +352,7 @@ var/list/solars_list = list()
 	updateDialog()
 
 
-/obj/machinery/power/solar_control/initialize()
+/obj/machinery/power/solar_control/Initialize()
 	. = ..()
 	if(!powernet) return
 	set_panels(cdir)

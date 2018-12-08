@@ -29,8 +29,12 @@
 			H.apply_damage(agony_to_apply, HALLOSS)
 	..()
 
+<<<<<<< HEAD
 /obj/item/weapon/melee/baton/slime/loaded/New()
 	..()
+=======
+/obj/item/weapon/melee/baton/slime/loaded/Initialize()
+>>>>>>> 61df5b8... Merge pull request #5762 from kevinz000/initialize_caps
 	bcell = new/obj/item/weapon/cell/device(src)
 	update_icon()
 	return

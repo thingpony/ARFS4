@@ -27,7 +27,11 @@
 	icon_living = "rainbow baby slime"
 	icon_dead = "rainbow baby slime dead"
 
+<<<<<<< HEAD
 /mob/living/simple_animal/old_slime/science/initialize()
+=======
+/mob/living/simple_animal/slime/science/Initialize()
+>>>>>>> 61df5b8... Merge pull request #5762 from kevinz000/initialize_caps
 	. = ..()
 	overlays.Cut()
 	overlays += "aslime-:33"
