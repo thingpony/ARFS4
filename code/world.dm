@@ -85,13 +85,6 @@ var/global/datum/global_init/init = new ()
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
 
-	// Loads all the pre-made submap templates.
-	load_map_templates()
-
-	if(config.generate_map)
-		if(using_map.perform_map_generation())
-			using_map.refresh_mining_turfs()
-
 	// Create frame types.
 	populate_frame_types()
 
@@ -427,6 +420,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	/*spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
+<<<<<<< HEAD
 
 	processScheduler.stop()
 	Master.Shutdown()	//run SS shutdowns
@@ -437,6 +431,25 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..(reason)
+=======
+	if (reason || fast_track) //special reboot, do none of the normal stuff
+		if (usr)
+			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
+			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
+			world << "<span class='boldannounce'>[key_name_admin(usr)] has requested an immediate world restart via client side debugging tools</span>"
+
+		else
+			world << "<span class='boldannounce'>Rebooting world immediately due to host request</span>"
+	else
+		processScheduler.stop()
+		Master.Shutdown()	//run SS shutdowns
+		for(var/client/C in clients)
+			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+				C << link("byond://[config.server]")
+
+	log_world("World rebooted at [time_stamp()]")
+	..()
+>>>>>>> ec4e2be... Merge pull request #5778 from Neerti/emergency_maploader_fix
 
 /hook/startup/proc/loadMode()
 	world.load_mode()
