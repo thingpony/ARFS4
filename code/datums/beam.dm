@@ -59,6 +59,13 @@
 	return ..()
 
 /datum/beam/proc/Draw()
+<<<<<<< HEAD
+=======
+	if(QDELETED(target) || QDELETED(origin))
+		qdel(src)
+		return
+
+>>>>>>> 1950d93... Fixes beam proc. (#5797)
 	var/Angle = round(Get_Angle(origin,target))
 
 	var/matrix/rot_matrix = matrix()
