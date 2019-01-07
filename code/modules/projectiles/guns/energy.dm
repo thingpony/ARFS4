@@ -2,7 +2,6 @@
 	name = "energy gun"
 	desc = "A basic energy-based gun."
 	icon_state = "energy"
-	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
 
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
@@ -27,7 +26,11 @@
 	..()
 	if(self_recharge)
 		power_supply = new /obj/item/weapon/cell/device/weapon(src)
+<<<<<<< HEAD
 		processing_objects.Add(src)
+=======
+		START_PROCESSING(SSobj, src)
+>>>>>>> 81c3036... Guns sounds refactor and improvements (#5803)
 	else
 		if(cell_type)
 			power_supply = new cell_type(src)
@@ -181,7 +184,11 @@
 	if(power_supply == null)
 		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	self_recharge = 1
+<<<<<<< HEAD
 	processing_objects.Add(src)
+=======
+	START_PROCESSING(SSobj, src)
+>>>>>>> 81c3036... Guns sounds refactor and improvements (#5803)
 	update_icon()
 
 /obj/item/weapon/gun/energy/get_description_interaction()

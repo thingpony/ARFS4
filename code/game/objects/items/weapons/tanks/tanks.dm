@@ -65,7 +65,11 @@ var/list/global/tank_gauge_cache = list()
 	src.air_contents = new /datum/gas_mixture()
 	src.air_contents.volume = volume //liters
 	src.air_contents.temperature = T20C
+<<<<<<< HEAD
 	processing_objects.Add(src)
+=======
+	START_PROCESSING(SSobj, src)
+>>>>>>> 81c3036... Guns sounds refactor and improvements (#5803)
 	update_gauge()
 	return
 
@@ -464,7 +468,7 @@ var/list/global/tank_gauge_cache = list()
 			if(!T)
 				return
 			T.assume_air(air_contents)
-			playsound(get_turf(src), 'sound/weapons/shotgun.ogg', 20, 1)
+			playsound(get_turf(src), 'sound/weapons/Gunshot_shotgun.ogg', 20, 1)
 			visible_message("\icon[src] <span class='danger'>\The [src] flies apart!</span>", "<span class='warning'>You hear a bang!</span>")
 			T.hotspot_expose(air_contents.temperature, 70, 1)
 
