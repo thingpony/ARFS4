@@ -1,4 +1,4 @@
-/mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
+/mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
@@ -691,6 +691,10 @@
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
 				stat(null)
+				if(GLOB)
+					GLOB.stat_entry()
+				else
+					stat("Globals:", "ERROR")
 				if(Master)
 					Master.stat_entry()
 				else
@@ -706,7 +710,18 @@
 						
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
+<<<<<<< HEAD
 				
+=======
+
+			if(length(GLOB.sdql2_queries))
+				if(statpanel("SDQL2"))
+					stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
+					for(var/i in GLOB.sdql2_queries)
+						var/datum/SDQL2_query/Q = i
+						Q.generate_stat()
+
+>>>>>>> ae64d73... Upgrades SDQL2 and refactors it to a datum (#5793)
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null
