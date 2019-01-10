@@ -102,6 +102,13 @@
 /mob/living/proc/check_submerged()
 	if(buckled)
 		return 0
+<<<<<<< HEAD
+=======
+	if(hovering)
+		return 0
+	if(locate(/obj/structure/catwalk) in loc)
+		return 0
+>>>>>>> afa149c... Adds New PoI Features + Bonus PoI (#5796)
 	var/turf/simulated/floor/water/T = loc
 	if(istype(T))
 		return T.depth

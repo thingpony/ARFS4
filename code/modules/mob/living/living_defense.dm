@@ -421,6 +421,25 @@
 	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame.
 	return max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700)
 
+<<<<<<< HEAD
+=======
+// Called when struck by lightning.
+/mob/living/proc/lightning_act()
+	// The actual damage/electrocution is handled by the tesla_zap() that accompanies this.
+	Paralyse(5)
+	stuttering += 20
+	make_jittery(150)
+	emp_act(1)
+	to_chat(src, span("critical", "You've been struck by lightning!"))
+
+// Called when touching a lava tile.
+// Does roughly 100 damage to unprotected mobs, and 20 to fully protected mobs.
+/mob/living/lava_act()
+	add_modifier(/datum/modifier/fire/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
+	inflict_heat_damage(40) // Another 40, however this is instantly applied to unprotected mobs.
+	adjustFireLoss(20) // Lava cannot be 100% resisted with fire protection.
+
+>>>>>>> afa149c... Adds New PoI Features + Bonus PoI (#5796)
 /mob/living/proc/reagent_permeability()
 	return 1
 	return round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2)
