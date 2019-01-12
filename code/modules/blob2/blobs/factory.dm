@@ -15,7 +15,12 @@
 	var/spore_cooldown = 8 SECONDS
 
 /obj/structure/blob/factory/Destroy()
+<<<<<<< HEAD
 	for(var/mob/living/simple_animal/hostile/blob/spore/spore in spores)
+=======
+	for(var/mob/living/L in spores)
+		var/mob/living/simple_mob/blob/spore/spore = L
+>>>>>>> a78d394... Merge pull request #5826 from Mechoid/FixFixIronTide
 		if(istype(spore) && spore.factory == src)
 			spore.factory = null
 		else
