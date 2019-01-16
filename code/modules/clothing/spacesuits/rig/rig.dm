@@ -124,7 +124,11 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
+<<<<<<< HEAD
 	processing_objects |= src
+=======
+	START_PROCESSING(SSobj, src)
+>>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 
 	if(initial_modules && initial_modules.len)
 		for(var/path in initial_modules)
@@ -593,7 +597,7 @@
 	if(module_list.len)
 		data["modules"] = module_list
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, ((src.loc != user) ? ai_interface_path : interface_path), interface_title, 480, 550, state = nano_state)
 		ui.set_initial_data(data)

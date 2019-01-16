@@ -91,8 +91,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/brand
 	blood_sprite_state = null //Can't bloody these
 
-/obj/item/clothing/mask/smokable/New()
-	..()
+/obj/item/clothing/mask/smokable/Initialize()
+	. = ..()
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 	if(smoketime && !max_smoketime)
@@ -177,7 +177,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		T.visible_message(flavor_text)
 		update_icon()
 		set_light(2, 0.25, "#E38F46")
+<<<<<<< HEAD
 		processing_objects.Add(src)
+=======
+		START_PROCESSING(SSobj, src)
+>>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	var/turf/T = get_turf(src)
@@ -280,8 +284,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
 
-/obj/item/clothing/mask/smokable/cigarette/New()
-	..()
+/obj/item/clothing/mask/smokable/cigarette/Initialize()
+	. = ..()
 	if(nicotine_amt)
 		reagents.add_reagent("nicotine", nicotine_amt)
 
@@ -363,8 +367,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	throwforce = 1
 
-/obj/item/weapon/cigbutt/New()
-	..()
+/obj/item/weapon/cigbutt/Initialize()
+	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	transform = turn(transform,rand(0,360))
@@ -541,7 +545,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
 		set_light(2)
+<<<<<<< HEAD
 		processing_objects.Add(src)
+=======
+		START_PROCESSING(SSobj, src)
+>>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 	else
 		lit = 0
 		icon_state = "[base_state]"

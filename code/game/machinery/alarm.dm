@@ -497,7 +497,7 @@
 	if(!(locked && !remote_connection) || remote_access || issilicon(user))
 		populate_controls(data)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "air_alarm.tmpl", name, 325, 625, master_ui = master_ui, state = state)
 		ui.set_initial_data(data)
@@ -965,7 +965,11 @@ FIRE ALARM
 		else if(href_list["time"])
 			timing = text2num(href_list["time"])
 			last_process = world.timeofday
+<<<<<<< HEAD
 			processing_objects.Add(src)
+=======
+			START_PROCESSING(SSobj, src)
+>>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 		else if(href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			time += tp
