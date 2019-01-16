@@ -6,4 +6,11 @@
 #define TICK_CHECK ( TICK_USAGE > GLOB.CURRENT_TICKLIMIT )
 #define CHECK_TICK if TICK_CHECK stoplag()
 
+<<<<<<< HEAD
 #define TICK_USAGE world.tick_usage
+=======
+#define TICK_CHECK_HIGH_PRIORITY ( TICK_USAGE > 95 )
+#define CHECK_TICK_HIGH_PRIORITY ( TICK_CHECK_HIGH_PRIORITY? stoplag() : 0 )
+
+#define UNTIL(X) while(!(X)) stoplag()
+>>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv

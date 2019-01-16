@@ -306,7 +306,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
 			info["stat"] = M.stat
 			info["type"] = M.type
-			if(isliving(M))
+			if(istype(M, /mob/living))
 				var/mob/living/L = M
 				info["damage"] = list2params(list(
 							oxy = L.getOxyLoss(),
@@ -666,4 +666,20 @@ proc/establish_old_db_connection()
 	else
 		return 1
 
+<<<<<<< HEAD
+=======
+// Things to do when a new z-level was just made.
+/world/proc/max_z_changed()
+	if(!istype(GLOB.players_by_zlevel, /list))
+		GLOB.players_by_zlevel = new /list(world.maxz, 0)
+	while(GLOB.players_by_zlevel.len < world.maxz)
+		GLOB.players_by_zlevel.len++
+		GLOB.players_by_zlevel[GLOB.players_by_zlevel.len] = list()
+
+// Call this to make a new blank z-level, don't modify maxz directly.
+/world/proc/increment_max_z()
+	maxz++
+	max_z_changed()
+
+>>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv
 #undef FAILED_DB_CONNECTION_CUTOFF

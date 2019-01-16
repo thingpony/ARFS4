@@ -254,7 +254,11 @@
 			if(prob(scan_ticks * 10))
 				spawn(0)
 					set background = 1
+<<<<<<< HEAD
 					if(processing_objects.Find(src))
+=======
+					if(datum_flags & DF_ISPROCESSING)
+>>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv
 						//scan radios in the world to try and find one
 						var/cur_dist = 999
 						for(var/obj/item/device/radio/beacon/R in all_beacons)

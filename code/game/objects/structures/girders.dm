@@ -53,9 +53,15 @@
 	if(applies_material_colour)
 		color = girder_material.icon_colour
 	if(girder_material.products_need_process()) //Am I radioactive or some other? Process me!
+<<<<<<< HEAD
 		processing_objects |= src
 	else if(src in processing_objects) //If I happened to be radioactive or s.o. previously, and am not now, stop processing.
 		processing_objects -= src
+=======
+		START_PROCESSING(SSobj, src)
+	else if(datum_flags & DF_ISPROCESSING) //If I happened to be radioactive or s.o. previously, and am not now, stop processing.
+		STOP_PROCESSING(SSobj, src)
+>>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv
 
 /obj/structure/girder/get_material()
 	return girder_material

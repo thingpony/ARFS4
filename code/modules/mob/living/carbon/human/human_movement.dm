@@ -135,7 +135,51 @@
 			tally = tally/2
 		tally -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
+<<<<<<< HEAD
 	return max(-3, tally+config.human_delay)	// Minimum return should be the same as force_max_speed
+=======
+	return max(HUMAN_LOWEST_SLOWDOWN, tally+config.human_delay)	// Minimum return should be the same as force_max_speed
+
+// This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
+// It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
+// Also its nice to have these things seperated.
+/mob/living/carbon/human/proc/calculate_item_encumbrance()
+	if(!buckled && shoes) // Shoes can make you go faster.
+		. += shoes.slowdown
+
+	// Loop through some slots, and add up their slowdowns.
+	// Includes slots which can provide armor, the back slot, and suit storage.
+	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store))
+		. += I.slowdown
+
+	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
+	// This is done seperately to disallow negative numbers (so you can't hold shoes in your hands to go faster).
+	for(var/obj/item/I in list(r_hand, l_hand) )
+		. += max(I.slowdown, 0)
+
+// Similar to above, but for turf slowdown.
+/mob/living/carbon/human/proc/calculate_turf_slowdown(turf/T)
+	if(T && T.movement_cost)
+		var/turf_move_cost = T.movement_cost
+		if(istype(T, /turf/simulated/floor/water))
+			if(species.water_movement)
+				turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.water_movement, 15)
+			if(shoes)
+				var/obj/item/clothing/shoes/feet = shoes
+				if(feet.water_speed)
+					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.water_speed, 15)
+			. += turf_move_cost
+		if(istype(T, /turf/simulated/floor/outdoors/snow))
+			if(species.snow_movement)
+				turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.snow_movement, 15)
+			if(shoes)
+				var/obj/item/clothing/shoes/feet = shoes
+				if(feet.water_speed)
+					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.snow_speed, 15)
+			. += turf_move_cost
+
+#undef HUMAN_LOWEST_SLOWDOWN
+>>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act?
