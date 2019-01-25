@@ -205,6 +205,24 @@
 		return 0
 	return 1
 
+<<<<<<< HEAD
+=======
+// Updates pressure protection
+// Seal = 1 sets protection
+// Seal = 0 unsets protection
+/obj/item/weapon/rig/proc/update_airtight(var/obj/item/piece, var/seal = 0)
+	if(seal == 1)
+		min_pressure_protection = rigsuit_min_pressure
+		max_pressure_protection = rigsuit_max_pressure
+		piece.item_flags |= AIRTIGHT
+	else
+		min_pressure_protection = null
+		max_pressure_protection = null
+		piece.item_flags &= ~AIRTIGHT
+	return
+
+
+>>>>>>> 19422d0... Merge pull request #5900 from Anewbe/rig_fix
 /obj/item/weapon/rig/proc/reset()
 	offline = 2
 	canremove = 1
