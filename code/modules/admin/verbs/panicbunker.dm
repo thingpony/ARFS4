@@ -1,7 +1,7 @@
 /client/proc/panicbunker()
 	set category = "Server"
 	set name = "Toggle Panic Bunker"
-	
+
 	if(!check_rights(R_ADMIN))
 		return
 
@@ -29,3 +29,8 @@
 	if (config.paranoia_logging && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The Database is not connected! Paranoia logging will not be able to give 'player age' (time since first connection) warnings, only Byond account warnings.")
 	feedback_add_details("admin_verb","PARLOG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/requestmoreadmins()
+	set category = "Admin"
+	set name = "Request More Admins"
+	send2adminirc("[src.key] has requested additional admins.")
