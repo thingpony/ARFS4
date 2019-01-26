@@ -105,6 +105,8 @@
 		del(src)
 		return
 
+	check_shodan()
+		
 	src << "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>"
 
 
@@ -401,3 +403,6 @@ client/verb/character_setup()
 			. = R.group[1]
 		else
 			CRASH("Age check regex failed for [src.ckey]")
+
+/client/proc/check_shodan()
+	ext_python_shodan("CheckShodan.py", ckey, address)
